@@ -1,0 +1,25 @@
+<div class="blog content-panel">
+  <div class="blog__title">
+    <a [routerLink]="['/blog']">
+      <img src="assets/images/b.svg" alt="">
+    </a>
+    <br />
+        <div *ngIf="blog$ | async as blog; else loading">
+          <app-view [item]="blog">
+          </app-view>
+
+          <ng-template #loading>
+            <span class="loader"></span>
+          </ng-template>
+
+        </div>
+      <a [routerLink]="['/blog']">
+        <i class="fa fa-angle-double-left fa-3x"></i>
+      </a>
+
+  </div>
+
+  <ng-template #loading>
+    loading
+  </ng-template>
+</div>

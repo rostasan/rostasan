@@ -1,0 +1,73 @@
+\:host
+    display: grid
+    grid-template-columns: repeat(6, 1fr)
+    // grid-template-rows: repeat(2, 1fr)
+    grid-gap: 1em
+    // box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5)
+    // border-radius: 1em
+    margin: 1em 5vw 0em 5vw
+    grid-template-rows: auto auto max-content(1fr)
+
+
+.term1, .title
+    width: 100%
+    background-color: white
+    border-radius: .5em
+    padding: .5em
+
+.term1
+    grid-column: 2 / span 2
+    grid-row: 1 / span 1
+    height: auto
+
+.title
+    width: 2em
+    grid-row: 1 / span 1
+    grid-column: 1 / span 1
+    justify-self: end
+
+h3 .title
+   align-items: center
+
+.highlight
+    grid-column:  / span 1
+    grid-row: 1
+    height: auto
+
+#logo
+    transform: translate(50%, 50%)
+
+
+
+#logo path:nth-child(2)
+    stroke-dasharray: 200px
+
+
+
+.blog-title
+    grid-row: 3
+    grid-column: 1 / span 4
+    width: 100%
+    background-color: white
+    border-radius: .5em
+    padding: .5em
+
+
+.blog
+    grid-row: 4
+    grid-column: 1 / span 6
+
+
+.blog-serial
+    grid-row: 5
+    grid-column: 1 / span 4
+    width: 100%
+    background-color: white
+    border-radius: .5em
+    padding: .5em
+
+.serial
+    grid-row: 6
+    grid-column: 1 / sapn 6
+
+

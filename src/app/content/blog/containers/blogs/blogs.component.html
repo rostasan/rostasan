@@ -1,0 +1,17 @@
+
+    <img src="assets/images/b.svg" alt="">
+    <br />
+        <div *ngIf="blogs$ | async as blogs; else loading;" class="">
+            <div class="message" *ngIf="!blogs.length">
+                Nothing here
+            </div>
+
+            <app-list-group
+                *ngFor="let blog of blogs"
+                [item]="blog">
+            </app-list-group>
+        </div>
+        <ng-template #loading>
+            <span class="loader"></span>
+        </ng-template>
+

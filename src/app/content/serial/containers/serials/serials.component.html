@@ -1,0 +1,23 @@
+<div class="content-panel panel-default">
+  <div class="pb-4">
+    <img src="assets/images/s.svg" alt="">
+  </div>
+
+
+
+  <div *ngIf="serials$ | async as serials; else loading;">
+    <div class="message" *ngIf="!serials.length">
+      Nothing here
+    </div>
+    <app-list-group *ngFor="let serial of serials" [item]="serial">
+    </app-list-group>
+
+  </div>
+
+  <ng-template #loading>
+    <span class="loader"></span>
+
+  </ng-template>
+
+</div>
+

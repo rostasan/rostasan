@@ -1,0 +1,101 @@
+***************** Instal Steps and changes made *********************
+
+
+2-18-19 npm install --save pdfjs-dist && npm install --save-dev @types/pdfjs-dist
+        npm audit fix - stil have 1 high vulnerbility from compodoc
+        npm install webpack
+        npm install --save handlebars
+        npm install typescript@3.1.1
+
+ 3-5-19
+        Error: ENOENT: no such file or directory, open 'L:\Static\rcore\node_modules\jquery\dist\jquery.min.js'
+        npm install jquery --save-dev
+        Removed Froala from app
+        npm install ng2-pdf-viewer --save-dev
+
+3-28-19
+       run build error
+       No module factory available for dependency type: ContextElementDependency
+       Error: No module factory available for dependency type: ContextElementDependency
+       at addDependency (L:\Static\cms\node_modules\webpack\lib\Compilation.js:696:12)
+       fix
+       npm uninstall webpack --save-dev
+       npm install --save-dev @angular-devkit/build-angular
+
+       npm install node-sass
+
+       NPM AUDIT
+
+
+7-24-19
+      Universal in Angular and uploading to a cloud function.
+      https://fireship.io/lessons/angular-universal-firebase/
+      ng add @nguniversal/express-engine --clientProject rostasan
+
+https://keithclark.co.uk/articles/pure-css-parallax-websites/demo3/
+
+npm run build:ssr
+npm run serve:ssr
+
+https://ogp.me/ for Meta tags
+https://www.concretepage.com/angular/angular-meta-service-for-meta-tags
+
+gcloud app deploy
+
+Fixed the serve:ssr issue
+https://github.com/fireship-io/159-angular-universal-cloud-functions/blob/master/server.ts
+
+CORS setup for bucket rostasan-70d22.appspot.com
+    Enter into Google Cloud Shell
+
+        echo '[{"origin": ["*"],"responseHeader": ["Content-Type"],"method": ["GET", "HEAD"],"maxAgeSeconds": 3600}]' > cors-config.json
+
+        echo '[{"origin": ["https://rostasan.com", "https://rostasan-70d22.appspot.com"],"responseHeader": ["Content-Type"],"method": ["GET", "HEAD"],"maxAgeSeconds": 3600}]' > cors-config.json
+
+        gsutil cors set cors-config.json gs://rostasan-70d22.appspot.com
+
+    Check settings
+        gsutil cors get gs://rostasan-70d22.appspot.com
+
+
+Deployment to FIREBASE
+
+  install using https://fireship.io/lessons/angular-universal-firebase/
+command line:
+      Files copied using npm i fs-extra in cp-angular.js file
+
+
+      cd functions
+      npm run build
+      firebase serve
+      firebase deploy
+            https://rostasan-70d22.firebaseapp.com/blog/Angular_&_Declarative_Patterns
+
+
+
+URL link Preview
+https://fireship.io/snippets/link-preview-angular/
+
+
+Updating main.ts
+npm i @nguniversal/express-engine -D
+npm install @nguniversal/common --save
+
+setting up Ivy - not working with default Angular pipes
+
+    https://dzone.com/articles/how-to-upgrade-angular-packagesenable-ivy-compiler
+    npm i -g @angular/cli@9.0.0-next.6
+    npm i -save @angular/cli@9.0.0-next.6
+    npm i @angular/{common,compiler,forms,platform-browser,platform-browser-dynamic,platform-server,router}@next
+    npm i @angular-devkit/build-angular@next @angular/{compiler-cli,cli,language-service}@next -D
+
+    Angular.json
+        "angularCompilerOptions": {
+          "enableIvy": true,
+          "allowEmptyCodegenFiles": true
+        }
+
+    Package json scripts
+      "postinstall": "ivy-ngcc"
+
+    NCU -U 

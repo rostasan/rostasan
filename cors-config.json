@@ -1,0 +1,16 @@
+
+{
+  "origin": [
+    "https://rostasan.com",
+    "https://rostasan-70d22.appspot.com"
+  ],
+  "responseHeader": [
+    "Content-Type"
+  ],
+  "method": [
+    "GET",
+    "HEAD"
+  ],
+  "maxAgeSeconds": 3600
+}
+

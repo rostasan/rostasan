@@ -1,0 +1,22 @@
+<div class="serial content-panel">
+<!-- start display short  -->
+  <div *ngIf="short$ | async as short">
+    <div *ngIf="toggledContent">
+      <app-view [item]="short" class="script">
+      </app-view>
+      <ng-template #loading>
+        <span class="loader"></span>
+      </ng-template>
+    </div>
+  </div>
+  <!-- start display Feature  -->
+  <div *ngIf="feature$ | async as feature">
+    <div *ngIf="toggledContent">
+      <app-view-feature [item]="feature">
+      </app-view-feature>
+      <ng-template #loading>
+        <span class="loader"></span>
+      </ng-template>
+    </div>
+  </div>
+</div>

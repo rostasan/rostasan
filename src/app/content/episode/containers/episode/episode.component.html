@@ -1,0 +1,29 @@
+<div class="episode content-panel">
+  <div class="episode__title">
+    <img src="assets/images/e.svg" alt="">
+    <br />
+
+    <br />
+
+  </div>
+
+<!-- start display Episode  -->
+      <div *ngIf="episode$ | async as episode; else loading">
+            <app-view [item]="episode">
+            </app-view>
+
+        </div>
+<ng-template #loading>
+  <div class="d-flex justify-content-center">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>
+<!-- end Episode Display -->
+
+</div>
+<div class="p-0 m-0">
+        <video [muted]="true" autoplay loop class="p-0 w-100 shadow-lg video">
+            <source src="./assets/videos/profile_eva_crusader2.mp4" alt=""   />
+        </video>
+</div>

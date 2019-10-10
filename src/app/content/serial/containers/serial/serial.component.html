@@ -1,0 +1,38 @@
+<div class="serial content-panel">
+  <div class="pb-4">
+    <a [routerLink]="['/serial']">
+     <img src="assets/images/s.svg" alt="">
+    </a>
+    <br />
+  </div>
+
+<!-- start display Serial  -->
+      <div *ngIf="serial$ | async as serial; else loading">
+            <app-view [item]="serial">
+            </app-view>
+          <ng-template #loading>
+            <span class="loader"></span>
+          </ng-template>
+
+      </div>
+<!-- end Serial Display -->
+<!-- Start Episode list -->
+      <div *ngIf="episodes$ | async as episodes; else loading;">
+
+         <app-list-group-episode *ngFor="let episode of episodes" [item]="episode">
+        </app-list-group-episode>
+      </div>
+      <ng-template #loading>
+        <span class="loader"></span>
+
+      </ng-template>
+  <!-- End Episode list -->
+
+        <a [routerLink]="['/serial']">
+          <i class="fa fa-angle-double-left fa-3x"></i>
+        </a>
+
+</div>
+  <ng-template #loading>
+    loading
+   </ng-template>

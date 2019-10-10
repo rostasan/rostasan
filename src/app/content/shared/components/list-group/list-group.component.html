@@ -1,0 +1,11 @@
+<div class="list-item">
+  <h4>
+     <a [routerLink]="getRoute(item)">
+       {{ item.title }}
+     </a>
+  </h4>
+<span class="date">
+  {{ item.timestamp | date: 'medium' }}
+</span>
+  <p class="list-item__description">{{ item.description }}</p>
+</div>

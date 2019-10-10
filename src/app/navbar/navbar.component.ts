@@ -1,0 +1,103 @@
+import { Component, OnInit, HostListener, ElementRef, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Meta } from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-navbar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.sass'],
+  animations: [
+    trigger('scrollAnimation', [
+      state('true', style({
+        opacity: 1,
+        transform: 'translateY(0)'
+      })),
+      state('false', style({
+        opacity: 0,
+        transform: 'translateY(-100%)'
+      })),
+      transition('true => false', animate('300ms ease-out')),
+      transition('false => true', animate('200ms ease-in'))
+    ]),
+    trigger('open', [
+      state(
+        'closed',
+        style({
+          opacity: 1,
+          transform: 'translateX(0)'
+        })
+      ),
+      state(
+        'open',
+        style({
+          opacity: 0,
+          transform: 'translateX(-100%)'
+        })
+      ),
+      transition('closed => open', animate('300ms ease-out')),
+      transition('open => closed', animate('200ms ease-in'))
+    ])
+  ]
+})
+export class NavbarComponent implements OnInit {
+
+  @Output() ToggledContact = new EventEmitter<boolean>();
+
+  sideNav: any;
+  toggled = false;
+  toggledContact = true;
+// scroll hide animation
+  state = 'true';
+  show: boolean;
+
+
+  constructor(
+    public el: ElementRef,
+    private meta: Meta) {}
+
+  ngOnInit() {
+
+  }
+  @HostListener('window:scroll', ['$event'])
+  checkScroll() {
+    const componentPosition = this.el.nativeElement.offsetTop;
+    const scrollPosition = window.pageYOffset;
+
+    if (scrollPosition <= componentPosition) {
+      this.state = 'true';
+      this.show = true;
+    } else {
+      this.state = 'false';
+      this.show = false;
+    }
+  }
+  openNav() {
+    // document.getElementById('sideNav').style.width = '100%';
+    // document.body.style.maxWidth = '80%';
+    // document.body.style.right = '0px';
+    this.show = true;
+  }
+  // openNav() {
+  //   document.getElementById('sideNav').style.width = '100%';
+  //   document.body.style.maxWidth = '80%';
+  //   document.body.style.left = '0px';
+  // }
+  closeNav() {
+    document.getElementById('sideNav').style.width = '0px';
+    document.body.style.maxWidth = null;
+    document.body.style.right = null;
+    this.show = false;
+  }
+
+  toggle() {
+    this.toggledContact = !this.toggledContact;
+    this.ToggledContact.emit(this.toggledContact);
+  }
+  removeMetaTags() {
+    this.meta.removeTag('itemprop = "name"');
+    this.meta.removeTag('itemprop = "description"');
+    this.meta.removeTag('itemprop = "image"');
+  }
+
+}

@@ -1,0 +1,17 @@
+<svg width="190" height="190" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="192" height="192" id="canvas_background" fill="none"/>
+ </g>
+
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_1" d="m-1,-10l202,0l0,147l-202,0l0,-147z" fill="none"/>
+  <text id="svg_4" transform="matrix(1.641939046591916,0,0,1.2372873393599935,-4.672897483959968,-111.69994688350218) " font-weight="normal" font-size="204" font-family="'Courier New'" y="213.85566" x="57.03547" stroke-width="0">
+   <tspan id="svg_5" text-anchor="middle" font-weight="normal" y="213.85566" x="57.03547">R</tspan>
+  </text>
+  <text id="svg_6" transform="matrix(1.4186896319999989,0,0,0.9497745360000001,-5.908392027039998,2.8383881129000006) " font-size="40" font-family="Rod" y="187.37967" x="5.18049">
+   <tspan id="svg_7" y="187.37967" x="5.18049">rostasan</tspan>
+  </text>
+ </g>
+</svg>

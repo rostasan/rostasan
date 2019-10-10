@@ -1,0 +1,14 @@
+<div [ngClass]="{ index: !contactDisplay }" class="content">
+  <nav class="navbar-expand-lg navbar-light fixed-top topbar">
+    <div class="color">
+      <app-navbar (ToggledContact)="toggle()"> </app-navbar>
+    </div>
+  </nav>
+
+  <router-outlet [ngClass]="{ outlet: !contactDisplay }"></router-outlet>
+</div>
+<app-contact
+  (ToggledContact)="toggle()"
+  *ngIf="!contactDisplay"
+  class="contact"
+></app-contact>

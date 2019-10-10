@@ -1,0 +1,41 @@
+<div class="content-panel panel-default">
+  <img src="assets/images/sp.svg" alt="">
+  <br />
+  <hr>
+  <h2>Feature Length</h2>
+  <div *ngIf="features$ | async as features; else loadingfeature;">
+      <div class="message" *ngIf="!features.length">
+        Nothing here
+      </div>
+      <app-list-group 
+      *ngFor="let feature of features" 
+      [item]="feature"
+      [featureRoute]="featureRoute">
+      </app-list-group>
+  </div>
+  <ng-template #loadingfeature>
+    <div class="d-flex justify-content-center">
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+      <span class="sr-only">Loading...</span>
+    </div>
+  </ng-template>
+  <hr>
+  <h2>Short Subject</h2>
+  <div *ngIf="shorts$ | async as shorts; else loadingshort;">
+      <div class="message" *ngIf="!shorts.length">
+        Nothing here
+      </div>
+      <app-list-group 
+      *ngFor="let short of shorts" 
+      [item]="short"
+      [shortRoute]="shortRoute">>
+      </app-list-group>
+  </div>
+
+  <ng-template #loadingshort>
+    <div class="d-flex justify-content-center">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+        <span class="sr-only">Loading...</span>
+    </div>
+  </ng-template>
+</div>

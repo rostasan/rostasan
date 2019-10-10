@@ -1,0 +1,86 @@
+<div class="list-item">
+  <div class="container" *ngIf="toggle">
+    <div class="row">
+      <div class="col">
+        <h2 class="list-item__title">
+          {{ item.title }}
+        </h2>
+        <hr>
+        <div class="description" *ngIf="item.description">
+          {{ item.description }}
+        </div>
+        <hr>
+        <button (click)="togglePDF()">Script</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="!toggle">
+    <div class="row">
+      <div class="col">
+        <button (click)="togglePDF()">Description</button>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-auto">
+          <button class="" (click)="prevPage()" [disabled]="page === 1">
+            <i class="fa fa-2x fa-arrow-circle-left"></i>
+          </button>
+      </div>
+      <div class="col-auto">
+        <span class="page-info">
+          {{ page }} - {{ totalPages }}
+        </span>
+      </div>
+      <div class="col-auto float-none">
+          <button class="" (click)="nextPage()" [disabled]="page === totalPages">
+             <i class="fa fa-2x fa-arrow-circle-right"></i>
+          </button>
+      </div>
+    </div>
+    <div class="row">
+            <div class="col-auto" (click)="prevPage()">
+              <button class="" (click)="prevPage()" [disabled]="page === 1">
+                <i class="fa fa-2x fa-arrow-circle-left"></i>
+              </button>
+            </div>
+            <div class="col">
+                    <pdf-viewer 
+                        [src]="url | async" 
+                        [render-text]="true"
+                        [original-size]="false"
+                        style="display: block;" 
+                        [show-all]="false"
+                        [page]="page"
+                        (after-load-complete)="afterLoadComplete($event)"
+                        [zoom]="zoom" 
+                        [autoresize]="autoresize">
+                    </pdf-viewer>
+            </div>
+            <div class="col-auto float-none" (click)="nextPage()" >
+              <button class="" [disabled]="page === totalPages">
+                <i class="fa fa-2x fa-arrow-circle-right"></i>
+              </button>
+            </div>
+
+    </div>
+        <div class="row justify-content-md-center">
+          <div class="col-auto">
+            <button (click)="prevPage()" class="" [disabled]="page === 1">
+              <i class="fa fa-2x fa-arrow-circle-left"></i>
+            </button>
+          </div>
+          <div class="col-auto align-bottom">
+            <span class="page-info">
+              {{ page }} - {{ totalPages }}
+            </span>
+          </div>
+          <div class="col-auto">
+            <button class="" (click)="nextPage()" [disabled]="page === totalPages">
+              <i class="fa fa-2x fa-arrow-circle-right"></i>
+            </button>
+          </div>
+        </div>
+  </div>
+</div>
+
