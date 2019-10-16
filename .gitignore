@@ -49,3 +49,5 @@ Firestore_rules.json
 # System Files
 .DS_Store
 Thumbs.db
+StartCMD.bat
+notes.txt

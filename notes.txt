@@ -98,4 +98,11 @@ setting up Ivy - not working with default Angular pipes
     Package json scripts
       "postinstall": "ivy-ngcc"
 
-    NCU -U 
+    NCU -U
+
+
+
+An unhandled exception occurred: Invalid configuration object. Webpack has been initialised using a configuration object that
+does not match the API schema.
+
+    npm install webpack@latest --save-dev
