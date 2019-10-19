@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+// firebase
+import { AngularFirestore } from '@angular/fire/firestore';
+
 // import store
 import { Store } from 'app/store';
 
@@ -12,17 +15,14 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/find';
 
-// firebase
-import {
-  AngularFirestore,
-  AngularFirestoreDocument
-} from 'angularfire2/firestore';
 import { shareReplay } from 'rxjs/operators';
+
 
 @Injectable()
 export class BlogService {
-  blogDoc: AngularFirestoreDocument<Blog>;
+
 
   // Observable stream for the filestore collection
   blogs$: Observable<Blog[]> = this.afs
@@ -58,7 +58,7 @@ export class BlogService {
     return this.store
       .select<Blog[]>('blog')
       .filter(Boolean)
-      .map(blog => blog.find((item: Blog) => item.id === id));
+      .map((blog: Blog[]) => blog.find((item: Blog) => item.id === id));
   }
 
   getBlogTitle(customId: string) {
@@ -68,6 +68,6 @@ export class BlogService {
     return this.store
       .select<Blog[]>('blog')
       .filter(Boolean)
-      .map(blog => blog.find((item: Blog) => item.title === customId));
+      .map((blog: Blog[]) => blog.find((item: Blog) => item.title === customId));
   }
 }

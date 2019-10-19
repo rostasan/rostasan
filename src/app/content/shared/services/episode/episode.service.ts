@@ -17,10 +17,8 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 
 // firebase
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-
-import { SerialService } from 'content/shared/services/serial/serial.service';
-
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable()
 export class EpisodeService  {
@@ -62,7 +60,7 @@ export class EpisodeService  {
     }
     return this.store.select<Episode[]>('episode')
       .filter(Boolean)
-      .map(episode => episode.find((episode: Episode) => episode.id === id));
+      .map((episode: Episode[]) => episode.find((item: Episode) => item.id === id));
   }
 
   getEpisodes(SerialID: string) {

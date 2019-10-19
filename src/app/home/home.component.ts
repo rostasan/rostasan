@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Store } from 'app/store';
 import { BlogService } from 'app/content/shared/services/blog/blog.service';
-import { Blog } from 'models/blog';
+
 
 import { SerialService } from 'app/content/shared/services/serial/serial.service';
 

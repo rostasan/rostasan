@@ -15,7 +15,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 
 // firebase
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 
 
@@ -48,6 +48,6 @@ export class SerialService {
     }
     return this.store.select<Serial[]>('serial')
       .filter(Boolean)
-      .map(serial => serial.find((serial: Serial) => serial.id === id));
+      .map((serial: Serial[]) => serial.find((item: Serial) => item.id === id));
   }
 }

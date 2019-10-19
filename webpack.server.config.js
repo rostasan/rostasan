@@ -11,13 +11,7 @@ module.exports = {
   resolve: {
     extensions: [
       '.ts',
-      '.js',
-      '.json',
-      '',
-      '.webpack.js',
-      '.web.js',
-      '.tsx',
-      '.ts'
+      '.js'
     ]
   },
   optimization: {

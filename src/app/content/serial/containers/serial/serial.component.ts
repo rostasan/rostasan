@@ -1,7 +1,7 @@
 
 import { Episode } from 'models/episode';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -57,7 +57,7 @@ export class SerialComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
 
     this.serial$ = this.serialService.getSerial(id).pipe(
-      tap(data => {
+      tap((data: Serial) => {
         this.seo.generateTags({
           title: data.title,
           description: data.description,

@@ -1,11 +1,6 @@
-import { Store } from 'store';
-import { Observable } from 'rxjs/Observable';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
 import { SpService } from 'content/shared/services/screenplay/SpService';
-import { Subscription } from 'rxjs/Subscription';
-import { Screenplay } from 'models/screenplay';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SeoService } from 'app/content/shared/services/seo/seo.service';
 
 
@@ -35,7 +30,6 @@ export class ScreenplaysComponent implements OnInit {
   ShortID: any;
 
   constructor(
-    private store: Store,
     private route: ActivatedRoute,
     private spService: SpService,
     private seo: SeoService
@@ -53,11 +47,5 @@ export class ScreenplaysComponent implements OnInit {
       image: this.data.image,
       slug: this.data.url
     });
-
-
   }
-
-
-
-
 }

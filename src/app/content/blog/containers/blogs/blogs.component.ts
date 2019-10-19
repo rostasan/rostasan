@@ -1,11 +1,6 @@
-import { Store } from 'app/store';
-import { Blog } from 'models/blog';
-import { Observable } from 'rxjs/Observable';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BlogService } from 'content/shared/services/blog/blog.service';
-// import { Subscription } from 'rxjs/Subscription';
 import { ChangeDetectionStrategy } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { SeoService } from 'app/content/shared/services/seo/seo.service';
 
 @Component({
@@ -23,7 +18,6 @@ export class BlogsComponent implements OnInit {
   };
 
   constructor(
-    private store: Store,
     private blogService: BlogService,
     private seo: SeoService
   ) {

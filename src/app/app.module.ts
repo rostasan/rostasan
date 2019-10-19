@@ -17,15 +17,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from 'navbar/navbar.component';
 
 // ************* ANgularFire ********************** /
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 // ************* ANgularFire Auth ********************** /
 import { environment } from '../environments/environment';
 
-// ************* PDF Viewer ********************** /
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 // ************* Service Worker ********************** /
 import { ServiceWorkerModule } from '@angular/service-worker';

@@ -1,10 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { Serial } from 'models/serial';
-import { DownloadUrlPipe } from '../../pipes/pipes';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-view-feature',

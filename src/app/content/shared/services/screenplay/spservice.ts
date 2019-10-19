@@ -3,9 +3,6 @@ import { Injectable } from '@angular/core';
 // import store
 import { Store } from 'store';
 
-// services
-
-
 // Models
 import { Screenplay } from 'models/screenplay';
 
@@ -17,7 +14,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 
 // firebase
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 
 
@@ -74,7 +71,7 @@ export class SpService {
     }
     return this.store.select<Screenplay[]>('shorts')
       .filter(Boolean)
-      .map(short => short.find((short: Screenplay) => short.id === id));
+      .map((short: Screenplay[]) => short.find((item: Screenplay) => item.id === id));
   }
 
   getShortTitle(customId: string) {
@@ -83,7 +80,7 @@ export class SpService {
     }
     return this.store.select<Screenplay[]>('shorts')
       .filter(Boolean)
-      .map(short => short.find((short: Screenplay) => short.title === customId));
+      .map((short: Screenplay[]) => short.find((item: Screenplay) => item.title === customId));
   }
 // END Short Service
 // Feature Service
@@ -93,7 +90,7 @@ export class SpService {
     }
     return this.store.select<Screenplay[]>('features')
       .filter(Boolean)
-      .map(short => short.find((feature: Screenplay) => feature.id === id));
+      .map((short: Screenplay[]) => short.find((item: Screenplay) => item.id === id));
   }
 
   getFeatureTitle(customId: string) {
@@ -102,6 +99,6 @@ export class SpService {
     }
     return this.store.select<Screenplay[]>('features')
       .filter(Boolean)
-      .map(feature => feature.find((feature: Screenplay) => feature.title === customId));
+      .map((feature: Screenplay[]) => feature.find((item: Screenplay) => item.title === customId));
   }
 }

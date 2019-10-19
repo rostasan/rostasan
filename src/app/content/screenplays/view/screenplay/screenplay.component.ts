@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from 'store';
 
-import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
 
@@ -44,7 +43,7 @@ export class ScreenplayComponent implements OnInit {
 
     if (a.path === 'short') {
       this.short$ = this.spService.getShort(id).pipe(
-        tap(data => {
+        tap((data: Screenplay) => {
           this.seo.generateTags({
             title: data.title,
             description: data.description,
@@ -55,7 +54,7 @@ export class ScreenplayComponent implements OnInit {
       );
     } else {
       this.feature$ = this.spService.getFeature(id).pipe(
-        tap(data => {
+        tap((data: Screenplay) => {
           this.seo.generateTags({
             title: data.title,
             description: data.description,
@@ -65,16 +64,6 @@ export class ScreenplayComponent implements OnInit {
         })
       );
     }
-
-    // this.shorts$ = this.store.select<Screenplay[]>('shorts');
-    // this.subscription = this.spService.shorts$.subscribe();
-    // this.short$ = this.route.params
-    //   .switchMap(paramMap => this.spService.getShort(paramMap.id));
-
-    // this.features$ = this.store.select<Screenplay[]>('features');
-    // this.subscription = this.spService.features$.subscribe();
-    // this.feature$ = this.route.params
-    //   .switchMap(paramMap => this.spService.getFeature(paramMap.id));
   }
 
   toggleContent() {

@@ -3,8 +3,8 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-// thirdparty modules
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+// AngularFirebase
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 // components
 import { ListItemComponent } from 'content/shared/components/list-item/list-item.component';
@@ -46,10 +46,5 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
   ]
 })
 export class SharedModule {
-  // static forRoot(): ModuleWithProviders {
-  //   return {
-  //     ngModule: SharedModule,
-  //     providers: []
-  //   };
-  // }
+
 }

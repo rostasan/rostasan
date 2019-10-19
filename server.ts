@@ -9,7 +9,7 @@ import { ngExpressEngine } from '@nguniversal/express-engine';
 // Import module map for lazy loading
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
-import * as express from 'express';
+import express from 'express';
 import { join } from 'path';
 
 // Faster server renders w/ Prod mode (dev mode never needed)

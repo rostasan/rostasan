@@ -1,7 +1,5 @@
 import { Store } from 'store';
-
 import { Component, OnInit } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { SerialService } from 'content/shared/services/serial/serial.service';
 
 import { SeoService } from 'app/content/shared/services/seo/seo.service';

@@ -5,4 +5,5 @@ export interface Screenplay {
     body?: string;
     id?: string;
     timestamp?: number;
+    image?: string;
 }

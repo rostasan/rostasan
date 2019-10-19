@@ -4,4 +4,5 @@ export interface Serial {
     id?: string;
     timestamp?: number;
     path?: string;
+    image?: string;
 }

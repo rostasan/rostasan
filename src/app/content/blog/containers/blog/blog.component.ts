@@ -8,7 +8,7 @@ import { Blog } from 'models/blog';
 // services
 import { BlogService } from 'content/shared/services/blog/blog.service';
 import { SeoService } from 'app/content/shared/services/seo/seo.service';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
 export class BlogComponent implements OnInit {
 
   imgExists: boolean;
-  blog$: Observable<Blog[]>;
+  blog$: Observable<Blog>;
 
   constructor(
     private blogService: BlogService,
@@ -31,8 +31,9 @@ export class BlogComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+
     this.blog$ = this.blogService.getBlog(id).pipe(
-        tap(blog => {
+        tap((blog: Blog) => {
           this.seo.generateTags({
             title: blog.title,
             description: blog.description,

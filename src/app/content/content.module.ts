@@ -16,9 +16,9 @@ import { ContactDirective } from './contact/contact.directive';
 
 @NgModule({
   imports: [
-    CommonModule,
-    // SharedModule.forRoot(),
     BlogModule,
+    CommonModule,
+    SharedModule,
     PlaysModule,
     ProseModule,
     SerialModule,

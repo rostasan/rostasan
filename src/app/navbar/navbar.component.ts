@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ElementRef, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { Component, HostListener, ElementRef, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Meta } from '@angular/platform-browser';
 
@@ -40,7 +40,7 @@ import { Meta } from '@angular/platform-browser';
     ])
   ]
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
   @Output() ToggledContact = new EventEmitter<boolean>();
 
@@ -56,9 +56,7 @@ export class NavbarComponent implements OnInit {
     public el: ElementRef,
     private meta: Meta) {}
 
-  ngOnInit() {
 
-  }
   @HostListener('window:scroll', ['$event'])
   checkScroll() {
     const componentPosition = this.el.nativeElement.offsetTop;
@@ -73,16 +71,9 @@ export class NavbarComponent implements OnInit {
     }
   }
   openNav() {
-    // document.getElementById('sideNav').style.width = '100%';
-    // document.body.style.maxWidth = '80%';
-    // document.body.style.right = '0px';
     this.show = true;
   }
-  // openNav() {
-  //   document.getElementById('sideNav').style.width = '100%';
-  //   document.body.style.maxWidth = '80%';
-  //   document.body.style.left = '0px';
-  // }
+
   closeNav() {
     document.getElementById('sideNav').style.width = '0px';
     document.body.style.maxWidth = null;

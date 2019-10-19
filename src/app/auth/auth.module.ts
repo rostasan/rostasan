@@ -21,6 +21,8 @@ export const ROUTES: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    RegisterModule,
+    LoginModule,
     RouterModule.forChild(ROUTES)
   ],
   declarations: [UserComponent]

@@ -1,6 +1,5 @@
-import { Episode } from 'models/episode';
 import { Router } from '@angular/router';
-import { Serial } from 'models/serial';
+
 
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 

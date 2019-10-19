@@ -1,13 +1,11 @@
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-list-group',
   templateUrl: './list-group.component.html',
   styleUrls: ['./list-group.component.sass']
 })
-export class ListGroupComponent implements OnInit {
+export class ListGroupComponent {
 
   @Input()
   item: any;
@@ -23,18 +21,6 @@ export class ListGroupComponent implements OnInit {
 
   toggled = false;
   currentRoute: any;
-
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute
-    ) { }
-
-  ngOnInit() {
-
-
-
-
-}
 
   removeItem() {
     this.remove.emit(this.item.id);

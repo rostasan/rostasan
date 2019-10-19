@@ -1,5 +1,4 @@
 import { Router } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
 import { Component, OnInit, Input } from '@angular/core';
 import { Serial } from 'models/serial';
 
@@ -20,8 +19,6 @@ export class ViewComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private title: Title,
-    private meta: Meta
     ) { }
 
   ngOnInit() {

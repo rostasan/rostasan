@@ -5,4 +5,5 @@ export interface Blog {
     id?: string;
     timestamp?: number;
     path?: string;
+    image?: string;
 }
