@@ -19,7 +19,7 @@ module.exports = {
   },
   externals: [/^firebase/],
   output: {
-    // Puts the output at the root of the dist folder
+    // Altered for installing Angular Universal server side rendering
     path: path.join(__dirname, 'dist'),
     library: 'app',
     libraryTarget: 'umd',

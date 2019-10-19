@@ -2,10 +2,12 @@
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app-server",
-    "baseUrl": ".",
     "module": "commonjs",
     "types": []
   },
+  "files": [
+    "main.server.ts"
+  ],
   "exclude": [
     "test.ts",
     "**/*spec.ts"
