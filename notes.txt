@@ -6,6 +6,9 @@
         npm install webpack
         npm install --save handlebars
         npm install typescript@3.1.1
+        npm install rxjs
+        npm install bootstrap
+
 
  3-5-19
         Error: ENOENT: no such file or directory, open 'L:\Static\rcore\node_modules\jquery\dist\jquery.min.js'
@@ -111,3 +114,29 @@ does not match the API schema.
 To fix the find() issue
     Disabled enableIvy in tsconfig
     npm install typescript@3.5.3 --save-dev
+
+
+11-8-19
+  moving to testing app and updating rxjs
+
+
+FIX package.json not found issue
+  remove --bundleDependencies all" from package.json
+  "ng build --prod && ng run testapp:server:production --bundleDependencies all"
+
+
+Current deployment
+  Failed using just firebase deploy
+  firebase deploy --only functions:ssr -- fails
+  firebase deploy --except functions -- works
+
+Fix service worker
+    npm install --save-dev sw-precache-webpack-plugin
+
+Error on Firebase deploy
+    Function failed on loading user code. Error message: Code in file dist/index.js can't be loaded.
+    Did you list all required modules in the package.json dependencies?
+    Detailed stack trace: Error: Cannot find module 'firebase/app'
+
+    npm install --save firebase @angular/fire -f
+

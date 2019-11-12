@@ -8,11 +8,11 @@ import { Store } from 'store';
 import { Serial } from 'models/serial';
 
 // rxjs
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
+import { Observable, of } from 'rxjs';
+
+import { shareReplay, map, tap, filter } from 'rxjs/operators';
+
+
 
 // firebase
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -27,14 +27,16 @@ export class SerialService {
   // Observable stream for the filestore collection
   serials$: Observable<Serial[]> = this.afs.collection('serial').snapshotChanges()
     // map operator to get the document ID
-    .map(actions => {
+    .pipe(
+      map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Serial;
         const id = a.payload.doc.id;
         return { id, ...data };
       });
       // updating the store with the data
-    }).do(next => this.store.set('serial', next));
+    }),
+    tap(next => this.store.set('serial', next)));
 
 
   constructor(
@@ -44,10 +46,11 @@ export class SerialService {
   ) { }
 
   getSerial(id: string) {
-    if (!id) { return Observable.of({});
+    if (!id) { return of({});
     }
     return this.store.select<Serial[]>('serial')
-      .filter(Boolean)
-      .map((serial: Serial[]) => serial.find((item: Serial) => item.id === id));
+      .pipe(
+        filter(Boolean),
+        map((serial: Serial[]) => serial.find((item: Serial) => item.id === id)));
   }
 }

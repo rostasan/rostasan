@@ -1,8 +1,9 @@
+import { tap } from 'rxjs/operators';
 import { User } from 'models/user';
 import { Store } from 'store';
 import { Injectable } from '@angular/core';
 
-import 'rxjs/add/operator/do';
+
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -12,7 +13,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class AuthService {
 
   auth$ = this.af.authState
-    .do(next => {
+    .pipe(
+    tap(next => {
         if (!next) {
           this.store.set('user', null);
           return;
@@ -23,7 +25,7 @@ export class AuthService {
           authenticated: true
         };
         this.store.set('user', user);
-    });
+    }));
 
   constructor(
     private af: AngularFireAuth,

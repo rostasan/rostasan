@@ -25,6 +25,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 
+// ************* PDF Viewer ********************** /
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
+
 // ************* Service Worker ********************** /
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -51,7 +55,8 @@ import { SharedModule } from './content/shared/shared.module';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     }),
-    SharedModule
+    SharedModule,
+    PdfViewerModule
   ],
   providers: [Store],
   bootstrap: [AppComponent]

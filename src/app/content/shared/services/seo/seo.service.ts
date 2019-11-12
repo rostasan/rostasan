@@ -13,6 +13,8 @@ export class SeoService {
 
       // Set a title
       this.titleService.setTitle(tags.title);
+      this.meta.updateTag({ name: 'description', content: tags.description });
+      this.meta.updateTag({ name: 'keywords', content: tags.keywords });
 
       // Twitter Meta Tags
       this.meta.updateTag({ name: 'twitter:card', content: 'summary' });

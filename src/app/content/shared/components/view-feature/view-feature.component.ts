@@ -15,12 +15,13 @@ export class ViewFeatureComponent implements OnInit {
   @Input()
   item: any;
   url: any;
-  page: number = 1;
+  page: 1;
   totalPages: number;
-  isLoaded: boolean = false;
+  isLoaded: boolean;
   toggle = true;
-  zoom: number = 1.0;
-  originalSize: boolean = true;
+  zoom: 1.0;
+  originalSize: true;
+  autoresize: any;
   currentRoute: any;
 
   constructor(

@@ -1,11 +1,10 @@
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable ,  BehaviorSubject } from 'rxjs';
+import { distinctUntilChanged, pluck } from 'rxjs/operators';
 
-import 'rxjs/add/operator/pluck';
-import 'rxjs/add/operator/distinctUntilChanged';
+
 
 import { State } from 'state';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 const state: State = {
     user: undefined,
@@ -17,19 +16,19 @@ const state: State = {
 @Injectable()
 export class Store {
     private subject = new BehaviorSubject<State>(state);
-    private store = this.subject.asObservable().distinctUntilChanged();
+    private store = this.subject.asObservable().pipe(distinctUntilChanged());
 
     get value() {
         return this.subject.value;
     }
 
     select<T>(name: string): Observable<T> {
-        return this.store.pluck(name);
+        return this.store.pipe(pluck(name));
     }
 
-    set(name: string, state: any) {
+    set(name: string, item: any) {
         this.subject.next({
-            ...this.value, [name]: state
+            ...this.value, [name]: item
         });
     }
 }

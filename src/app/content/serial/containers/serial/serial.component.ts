@@ -3,9 +3,8 @@ import { Episode } from 'models/episode';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
+import { Subscription ,  Observable } from 'rxjs';
+
 import { tap } from 'rxjs/operators';
 
 // interfaces

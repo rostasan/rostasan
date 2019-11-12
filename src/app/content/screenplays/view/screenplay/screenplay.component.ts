@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from 'store';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { SpService } from 'content/shared/services/screenplay/SpService';

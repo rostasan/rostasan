@@ -7,11 +7,10 @@ import { Store } from 'store';
 import { Screenplay } from 'models/screenplay';
 
 // rxjs
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
+import { Observable, of } from 'rxjs';
+
+import { shareReplay, map, tap, filter } from 'rxjs/operators';
+
 
 // firebase
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -26,36 +25,42 @@ export class SpService {
   // Observable stream for the filestore collection
   screenplays$: Observable<Screenplay[]> = this.afs.collection('screenplay').snapshotChanges()
     // map operator to get the document ID
-    .map(actions => {
+    .pipe(
+      map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Screenplay;
         const id = a.payload.doc.id;
         return { id, ...data };
       });
       // updating the store with the data
-    }).do(next => this.store.set('screenplay', next));
+    }),
+    tap(next => this.store.set('screenplay', next)));
 
   shorts$: Observable<Screenplay[]> = this.afs.collection('shorts').snapshotChanges()
     // map operator to get the document ID
-    .map(actions => {
+    .pipe(
+      map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Screenplay;
         const id = a.payload.doc.id;
         return { id, ...data };
       });
       // updating the store with the data
-    }).do(next => this.store.set('shorts', next));
+    }),
+    tap(next => this.store.set('shorts', next)));
 
   features$: Observable<Screenplay[]> = this.afs.collection('features').snapshotChanges()
     // map operator to get the document ID
-    .map(actions => {
+   .pipe(
+      map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Screenplay;
         const id = a.payload.doc.id;
         return { id, ...data };
       });
       // updating the store with the data
-    }).do(next => this.store.set('features', next));
+    }),
+    tap(next => this.store.set('features', next)));
 
 
   constructor(
@@ -67,38 +72,42 @@ export class SpService {
   // short service
   getShort(id: string) {
     if (!id) {
-      return Observable.of({});
+      return of({});
     }
     return this.store.select<Screenplay[]>('shorts')
-      .filter(Boolean)
-      .map((short: Screenplay[]) => short.find((item: Screenplay) => item.id === id));
+      .pipe(
+        filter(Boolean),
+        map((short: Screenplay[]) => short.find((item: Screenplay) => item.id === id)));
   }
 
   getShortTitle(customId: string) {
     if (!customId) {
-      return Observable.of({});
+      return of({});
     }
     return this.store.select<Screenplay[]>('shorts')
-      .filter(Boolean)
-      .map((short: Screenplay[]) => short.find((item: Screenplay) => item.title === customId));
+      .pipe(
+        filter(Boolean),
+        map((short: Screenplay[]) => short.find((item: Screenplay) => item.title === customId)));
   }
 // END Short Service
 // Feature Service
   getFeature(id: string) {
     if (!id) {
-      return Observable.of({});
+      return of({});
     }
     return this.store.select<Screenplay[]>('features')
-      .filter(Boolean)
-      .map((short: Screenplay[]) => short.find((item: Screenplay) => item.id === id));
+      .pipe(
+        filter(Boolean),
+        map((short: Screenplay[]) => short.find((item: Screenplay) => item.id === id)));
   }
 
   getFeatureTitle(customId: string) {
     if (!customId) {
-      return Observable.of({});
+      return of({});
     }
     return this.store.select<Screenplay[]>('features')
-      .filter(Boolean)
-      .map((feature: Screenplay[]) => feature.find((item: Screenplay) => item.title === customId));
+      .pipe(
+        filter(Boolean),
+        map((feature: Screenplay[]) => feature.find((item: Screenplay) => item.title === customId)));
   }
 }

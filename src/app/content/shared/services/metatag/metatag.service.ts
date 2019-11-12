@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class MetatagService implements OnInit {
+export class MetatagService {
 
 
 
@@ -11,9 +11,7 @@ export class MetatagService implements OnInit {
 
   ) { }
 
-  ngOnInit() {
 
-  }
   getTitle(title: any) {
     title = 'Rostasan - Home';
    }

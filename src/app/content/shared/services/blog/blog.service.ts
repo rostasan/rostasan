@@ -10,14 +10,14 @@ import { Store } from 'app/store';
 import { Blog } from 'models/blog';
 
 // rxjs
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/find';
+import { Observable, of } from 'rxjs';
 
-import { shareReplay } from 'rxjs/operators';
+
+
+
+
+
+import { shareReplay, map, tap, filter } from 'rxjs/operators';
 
 
 @Injectable()
@@ -30,15 +30,16 @@ export class BlogService {
     .snapshotChanges()
     .pipe(shareReplay())
     // map operator to get the document ID
-    .map(actions => {
+    .pipe(
+    map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Blog;
         const id = a.payload.doc.id;
         return { id, ...data };
       });
       // updating the store with the data
-    })
-    .do(next => this.store.set('blog', next));
+    }),
+    tap(next => this.store.set('blog', next)));
 
   constructor(
     private store: Store,
@@ -53,21 +54,23 @@ export class BlogService {
 
   getBlog(id: string) {
     if (!id) {
-      return Observable.of({});
+      return of({});
     }
     return this.store
       .select<Blog[]>('blog')
-      .filter(Boolean)
-      .map((blog: Blog[]) => blog.find((item: Blog) => item.id === id));
+      .pipe(
+      filter(Boolean),
+      map((blog: Blog[]) => blog.find((item: Blog) => item.id === id)));
   }
 
   getBlogTitle(customId: string) {
     if (!customId) {
-      return Observable.of({});
+      return of({});
     }
     return this.store
       .select<Blog[]>('blog')
-      .filter(Boolean)
-      .map((blog: Blog[]) => blog.find((item: Blog) => item.title === customId));
+      .pipe(
+        filter(Boolean),
+      map((blog: Blog[]) => blog.find((item: Blog) => item.title === customId)));
   }
 }

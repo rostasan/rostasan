@@ -9,12 +9,11 @@ import { Episode } from 'models/episode';
 import { Serial } from 'models/serial';
 
 // rxjs
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
+import { Subscription ,  Observable, of } from 'rxjs';
+
+
+import { map, tap, filter } from 'rxjs/operators';
+
 
 // firebase
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -36,14 +35,16 @@ export class EpisodeService  {
 
 
   // map operator to get the document ID
-    .map(actions => {
+    .pipe(
+    map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Episode;
         const id = a.payload.doc.id;
         return { id, ...data };
       });
       // updating the store with the data
-    }).do(next => this.store.set('episode', next));
+    }),
+    tap(next => this.store.set('episode', next)));
 
 
   constructor(
@@ -56,30 +57,32 @@ export class EpisodeService  {
 
   getEpisodeId(id: string) {
     if (!id) {
-      return Observable.of({});
+      return of({});
     }
     return this.store.select<Episode[]>('episode')
-      .filter(Boolean)
-      .map((episode: Episode[]) => episode.find((item: Episode) => item.id === id));
+      .pipe(
+        filter(Boolean),
+        map((episode: Episode[]) => episode.find((item: Episode) => item.id === id)));
   }
 
   getEpisodes(SerialID: string) {
 
     return this.afs.collection('serial').doc(SerialID).collection('episode', ref => ref.orderBy('title')).snapshotChanges()
-      .map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data() as Episode;
-          const id = a.payload.doc.id;
-          return { id, ...data };
-        });
-        // updating the store with the data
-
-      }).do(next => this.store.set('episode', next));
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data() as Episode;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+          // updating the store with the data
+        }),
+        tap(next => this.store.set('episode', next)));
   }
 
  getEpisode(SerialID: string, EpisodeID: string) {
    this.episode$ = this.afs.collection('serial').doc(SerialID).collection('episode').doc(EpisodeID).valueChanges()
-               .do(next => this.store.set('episode', next));
+               .pipe(tap(next => this.store.set('episode', next)));
    return this.episode$;
   }
 

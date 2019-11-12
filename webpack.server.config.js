@@ -1,3 +1,5 @@
+// Work around for https://github.com/angular/angular-cli/issues/7200
+
 const path = require('path');
 const webpack = require('webpack');
 
@@ -7,33 +9,29 @@ module.exports = {
     // This is our Express server for Dynamic universal
     server: './server.ts'
   },
+  externals: [/^firebase/],
   target: 'node',
-  resolve: {
-    extensions: [
-      '.ts',
-      '.js'
-    ]
-  },
+  resolve: { extensions: ['.ts', '.js'] },
   optimization: {
     minimize: false
   },
-  externals: [/^firebase/],
   output: {
-    // Altered for installing Angular Universal server side rendering
+    // Puts the output at the root of the dist folder
     path: path.join(__dirname, 'dist'),
     library: 'app',
     libraryTarget: 'umd',
     filename: '[name].js'
   },
   module: {
+    noParse: /polyfills-.*\.js/,
     rules: [
       { test: /\.ts$/, loader: 'ts-loader' },
       {
         // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
         // Removing this will cause deprecation warnings to appear.
         test: /(\\|\/)@angular(\\|\/)core(\\|\/).+\.js$/,
-        parser: { system: true }
-      }
+        parser: { system: true },
+      },
     ]
   },
   plugins: [

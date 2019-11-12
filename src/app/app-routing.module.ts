@@ -4,22 +4,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from 'home/home.component';
 
 // lazy load modules
-import { EpisodeModule } from 'content/episode/episode.module';
-import { ScreenplaysModule } from 'content/screenplays/screenplays.module';
-import { ProseModule } from 'content/prose/prose.module';
-import { PlaysModule } from 'content/plays/plays.module';
-import { SerialModule } from 'content/serial/serial.module';
-import { BlogModule } from 'content/blog/blog.module';
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'blog', loadChildren: () => BlogModule },
-  { path: 'serial', loadChildren: () => SerialModule },
-  { path: 'episode', loadChildren: () => EpisodeModule },
-  { path: 'plays', loadChildren: () => PlaysModule },
-  { path: 'prose', loadChildren: () => ProseModule },
-  { path: 'screenplays', loadChildren: () => ScreenplaysModule }
+  { path: 'blog', loadChildren: () => import('content/blog/blog.module').then(m => m.BlogModule) },
+  { path: 'serial', loadChildren: () => import('content/serial/serial.module').then(m => m.SerialModule)  },
+  { path: 'episode', loadChildren: () => import('content/episode/episode.module').then(m => m.EpisodeModule)  },
+  { path: 'plays', loadChildren: () => import('content/plays/plays.module').then(m => m.PlaysModule)  },
+  { path: 'prose', loadChildren: () => import('content/prose/prose.module').then(m => m.ProseModule)  },
+  { path: 'screenplays', loadChildren: () => import('content/screenplays/screenplays.module').then(m => m.ScreenplaysModule)  }
   // { path: '**', component: HomeComponent },
 ];
 

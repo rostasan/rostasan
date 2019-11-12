@@ -54,10 +54,10 @@ export class NavbarComponent {
 
   constructor(
     public el: ElementRef,
-    private meta: Meta) {}
+    private meta: Meta) { }
 
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll', [])
   checkScroll() {
     const componentPosition = this.el.nativeElement.offsetTop;
     const scrollPosition = window.pageYOffset;
@@ -82,8 +82,9 @@ export class NavbarComponent {
   }
 
   toggle() {
-    this.toggledContact = !this.toggledContact;
-    this.ToggledContact.emit(this.toggledContact);
+    let toggle: boolean;
+    toggle = !this.toggledContact;
+    this.ToggledContact.emit(toggle);
   }
   removeMetaTags() {
     this.meta.removeTag('itemprop = "name"');

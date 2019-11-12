@@ -1,7 +1,8 @@
+import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EpisodeService } from 'content/shared/services/episode/episode.service';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'app-episodes',
@@ -15,7 +16,8 @@ export class EpisodesComponent implements OnInit {
   item: any;
 
   episodes$ = this.episodeService.episodes$
-              .map(res => this.item = res);
+              .pipe(
+              map(res => this.item = res));
 
   constructor(
     private episodeService: EpisodeService,

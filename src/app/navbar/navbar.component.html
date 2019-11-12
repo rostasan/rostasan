@@ -3,27 +3,27 @@
       <div class="col-md">
         <!-- without navbar-nav the links will turn blue -->
         <div class="navbar-nav p-1 menulink">
-            <a class="nav-link" routerLink="home" (click)="removeMetaTags()">
+            <a class="nav-link" routerLink="home" (click)="removeMetaTags()" aria-label="Rostasan Home Page">
               <img src="../../assets/images/r_logo.svg" class="logo" alt="">
             </a>
-            <a class="p-lg-4 p-md-3 align-middle" routerLink="blog" [routerLinkActive]="['link-active']" (click)="removeMetaTags()">Blog</a>
-            <a class="p-lg-4 p-md-3 align-middle disabled"  [routerLinkActive]="['link-active']" (click)="removeMetaTags()">Plays</a>
-            <a class="p-lg-4 p-md-3 align-middle" routerLink="prose" [routerLinkActive]="['link-active']" (click)="removeMetaTags()">Prose</a>
-            <a class="p-lg-4 p-md-3 align-middle" routerLink="screenplays" [routerLinkActive]="['link-active']" (click)="removeMetaTags()">Screenplays</a>
-            <a class="p-lg-4 p-md-3 align-middle" routerLink="serial" [routerLinkActive]="['link-active']" (click)="removeMetaTags()">Serial</a>
+            <a class="p-lg-4 p-md-3 align-middle" routerLink="blog" [routerLinkActive]="['link-active']" (click)="removeMetaTags()" aria-label="Blog">Blog</a>
+            <a class="p-lg-4 p-md-3 align-middle disabled"  [routerLinkActive]="['link-active']" (click)="removeMetaTags()" aria-label="Plays work in progress">Plays</a>
+            <a class="p-lg-4 p-md-3 align-middle" routerLink="prose" [routerLinkActive]="['link-active']" (click)="removeMetaTags()" aria-label="Prose, some day I'll get this done">Prose</a>
+            <a class="p-lg-4 p-md-3 align-middle" routerLink="screenplays" [routerLinkActive]="['link-active']" (click)="removeMetaTags()" aria-label="Screenplays, shorts & features">Screenplays</a>
+            <a class="p-lg-4 p-md-3 align-middle" routerLink="serial" [routerLinkActive]="['link-active']" (click)="removeMetaTags()" aria-label="Serials including Danica Star">Serial</a>
+            <div class="icon">
+              <img src="../../assets/icons/at.svg" (click)="toggle()" alt="">
+            </div>
             <div class="icon">
               <a href="https://twitter.com/rostasan?ref_src=twsrc%5Etfw" class="twitter-follow-button social"
-                data-show-count="false">
-                <i class="fa fa-twitter twit"></i>
+                data-show-count="false"  target="_blank" rel="noreferrer" aria-label="Rostasan Twitter account">
+                  <img src="../../assets/icons/twitter.svg" alt="">
               </a>
-              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <script async src="https://platform.twitter.com/widgets.js" rel="noreferrer" charset="utf-8"></script>
             </div>
             <div class="icon">
-              <i class="fa fa-envelope twit" aria-hidden="true" (click)="toggle()"></i>
-            </div>
-            <div class="icon">
-              <a href="https://github.com/rostasan">
-                <i class="fa fa-github twit" aria-hidden="true" ></i>
+              <a href="https://github.com/rostasan" target="_blank" rel="noreferrer"  aria-label="Rostasan Github">
+                  <img src="../../assets/icons/git.svg" alt="">
               </a>
             </div>
           </div>
@@ -49,17 +49,34 @@
   <div class="row  color">
     <div class="col">
       <div class=" p-1 menu" >
-        <img class="nav-link" routerLink="home" src="../../assets/images/r_logo.svg" class="logo" alt="">
-        <a class="nav-link" routerLink="blog" [routerLinkActive]="['link-active']">Blog</a>
-        <!-- <a class="nav-link btn disabled" routerLink="plays" [routerLinkActive]="['link-active']">Plays</a> -->
-        <a class="nav-link" routerLink="prose" [routerLinkActive]="['link-active']">Prose</a>
-        <a class="nav-link" routerLink="screenplays" [routerLinkActive]="['link-active']">Screenplays</a>
-        <a class="nav-link" routerLink="serial" [routerLinkActive]="['link-active']">Serial</a>
-        <a href="https://twitter.com/rostasan?ref_src=twsrc%5Etfw" class="twitter-follow-button social" data-show-count="false">
-          <i class="fa fa-twitter twit"></i>
-        </a>
-        <i class="fa fa-envelope" aria-hidden="true"></i>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a class="nav-link" routerLink="home" (click)="removeMetaTags()" aria-label="Rostasan Home Page">
+              <img src="../../assets/images/r_logo.svg" class="logo" alt="">
+            </a>
+            <a class="p-lg-4 p-md-3 align-middle" routerLink="blog" [routerLinkActive]="['link-active']" (click)="removeMetaTags()"
+              aria-label="Blog">Blog</a>
+            <a class="p-lg-4 p-md-3 align-middle disabled" [routerLinkActive]="['link-active']" (click)="removeMetaTags()"
+              aria-label="Plays work in progress">Plays</a>
+            <a class="p-lg-4 p-md-3 align-middle" routerLink="prose" [routerLinkActive]="['link-active']" (click)="removeMetaTags()"
+              aria-label="Prose, some day I'll get this done">Prose</a>
+            <a class="p-lg-4 p-md-3 align-middle" routerLink="screenplays" [routerLinkActive]="['link-active']"
+              (click)="removeMetaTags()" aria-label="Screenplays, shorts & features">Screenplays</a>
+            <a class="p-lg-4 p-md-3 align-middle" routerLink="serial" [routerLinkActive]="['link-active']"
+              (click)="removeMetaTags()" aria-label="Serials including Danica Star">Serial</a>
+            <div class="icon">
+              <img src="../../assets/icons/at.svg" (click)="toggle()" alt="">
+            </div>
+            <div class="icon">
+              <a href="https://twitter.com/rostasan?ref_src=twsrc%5Etfw" class="twitter-follow-button social"
+                data-show-count="false" target="_blank" rel="noreferrer" aria-label="Rostasan Twitter account">
+                <img src="../../assets/icons/twitter.svg" alt="">
+              </a>
+              <script async src="https://platform.twitter.com/widgets.js" rel="noreferrer" charset="utf-8"></script>
+            </div>
+            <div class="icon">
+              <a href="https://github.com/rostasan" target="_blank" rel="noreferrer" aria-label="Rostasan Github">
+                <img src="../../assets/icons/git.svg" alt="">
+              </a>
+            </div>
       </div>
     </div>
   </div>
