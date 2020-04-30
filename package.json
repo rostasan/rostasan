@@ -12,7 +12,9 @@
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server && npm run precache",
     "build:client-and-server-bundles": "ng build --prod && ng run testapp:server:production",
-    "precache": "sw-precache --verbose --config=sw-precache-config.js"
+    "precache": "sw-precache --verbose --config=sw-precache-config.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -34,14 +36,15 @@
     "classlist.js": "^1.1.20150312",
     "express": "^4.15.2",
     "firebase": "^7.3.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng2-pdf-viewer": "^6.0.1",
     "node-sass": "^4.13.0",
     "rxjs": "^6.4.0",
     "sw-precache-webpack-plugin": "^0.11.5",
     "tslib": "^1.10.0",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.9",
@@ -70,5 +73,6 @@
     "webpack-cli": "^3.1.0",
     "ws": "^7.2.0",
     "xhr2": "^0.2.0"
-  }
+  },
+  "snyk": true
 }
